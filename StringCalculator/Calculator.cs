@@ -14,7 +14,7 @@ namespace StringCalculator
             if (numbers.Length == 0) return 0;
 
             // Calculate sum
-            var stringNumbers = numbers.Split(',');
+            var stringNumbers = numbers.Split(',', '\n');
             var intNumbers = stringNumbers.Select(int.Parse).ToArray();
             var sum = intNumbers.Sum();
 
