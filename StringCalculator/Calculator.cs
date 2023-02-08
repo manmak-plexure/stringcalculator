@@ -10,7 +10,15 @@ namespace StringCalculator
     {
         internal int Add(string numbers)
         {
-            throw new NotImplementedException();
+            // Validate
+            if (numbers.Length == 0) return 0;
+
+            // Calculate sum
+            var stringNumbers = numbers.Split(',');
+            var intNumbers = stringNumbers.Select(int.Parse).ToArray();
+            var sum = intNumbers.Sum();
+
+            return sum;
         }
     }
 }
