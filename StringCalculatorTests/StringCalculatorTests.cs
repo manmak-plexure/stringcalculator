@@ -10,6 +10,7 @@ namespace StringCalculatorTests
         [InlineData("", 0)]
         [InlineData("4", 4)]
         [InlineData("1,2", 3)]
+        [InlineData("1,2,3,4,5,6,7,8,9", 45)]
         public void CommaSeparatedNumberStringReturnsSum(string input, int expected)
         {
             // Arrange
