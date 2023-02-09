@@ -8,12 +8,12 @@ namespace StringCalculator
 {
     internal class StringCalculator
     {
-        protected char[] Separators;
+        protected string[] Separators;
         protected int MaximumNumber;
 
-        internal StringCalculator(char[]? separators = null, int maximumNumber = 1000)
+        internal StringCalculator(string[]? separators = null, int maximumNumber = 1000)
         {
-            Separators = separators ?? new char[] { ',', '\n' };
+            Separators = separators ?? new string[] { ",", "\n" };
             MaximumNumber = maximumNumber;
         }
 
@@ -23,7 +23,7 @@ namespace StringCalculator
             if (numberString.Length == 0) return 0;
 
             // Calculate sum
-            var stringNumberArray = numberString.Split(Separators);
+            var stringNumberArray = numberString.Split(Separators, StringSplitOptions.None);
             var intNumberArray = stringNumberArray.Select(int.Parse).ToArray();
             var filteredNumberArray = FilterNumbersLargerThanMax(intNumberArray);
             ValidatePositiveNumbers(filteredNumberArray);

@@ -11,10 +11,10 @@ namespace StringCalculator
     {
         internal override int Add(string numberStringwithSeparator)
         {
-            var splitInput = numberStringwithSeparator.Split('\n');
+            var splitInput = numberStringwithSeparator.Split("\n");
             var newSeparator = splitInput[0].Substring(2);
 
-            Separators = Separators.Concat(new char[] { char.Parse(newSeparator) }).ToArray();
+            Separators = Separators.Concat(new string[] { newSeparator }).ToArray();
             var stringNumbers = splitInput[1];
 
             return base.Add(stringNumbers);
