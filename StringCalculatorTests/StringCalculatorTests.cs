@@ -27,6 +27,7 @@ namespace StringCalculatorTests
 
         [Theory]
         [InlineData("1,-2,-3")]
+        [InlineData("//;\n1,-2,-3")]
         public void NegativeNumbersCauseError(string input)
         {
             // Arrange
@@ -41,6 +42,20 @@ namespace StringCalculatorTests
         [Theory]
         [InlineData("1001,2", 2)]
         public void IgnoreNumbersLargerThanMax(string input, int expected)
+        {
+            // Arrange
+            var calculator = new Calculator();
+
+            // Act
+            var actual = calculator.Add(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("//[***]\n1***2***3", 6)]
+        public void AllowArbitrarySeparators(string input, int expected)
         {
             // Arrange
             var calculator = new Calculator();
