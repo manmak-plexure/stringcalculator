@@ -8,7 +8,7 @@ namespace StringCalculator
 {
     internal class Calculator
     {
-        internal static int Add(string numbers)
+        internal int Add(string numbers)
         {
             if (numbers.Length > 2 && numbers.Substring(0, 2) == "//")
             {
