@@ -23,10 +23,26 @@ namespace StringCalculator
             // Calculate sum
             var stringNumberArray = numberString.Split(Separators);
             var intNumberArray = stringNumberArray.Select(int.Parse).ToArray();
+
+            ValidatePositiveNumbers(intNumberArray);
             var sum = intNumberArray.Sum();
 
             return sum;
         }
 
+        internal void ValidatePositiveNumbers(int[] numbers)
+        {
+            List<int> negativeNumbers = new();
+            foreach (var number in numbers)
+            {
+                if (number < 0) negativeNumbers.Add(number);
+            }
+
+            if (negativeNumbers.Count > 0)
+            {
+                var errorMessage = $"negatives not allowed: {string.Join(' ', negativeNumbers)}";
+                throw new Exception(errorMessage);
+            }
+        }
     }
 }
