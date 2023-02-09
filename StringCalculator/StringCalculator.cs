@@ -9,10 +9,12 @@ namespace StringCalculator
     internal class StringCalculator
     {
         protected char[] Separators;
+        protected int MaximumNumber;
 
-        internal StringCalculator(char[]? separators = null)
+        internal StringCalculator(char[]? separators = null, int maximumNumber = 1000)
         {
             Separators = separators ?? new char[] { ',', '\n' };
+            MaximumNumber = maximumNumber;
         }
 
         internal virtual int Add(string numberString)
@@ -23,9 +25,10 @@ namespace StringCalculator
             // Calculate sum
             var stringNumberArray = numberString.Split(Separators);
             var intNumberArray = stringNumberArray.Select(int.Parse).ToArray();
-
-            ValidatePositiveNumbers(intNumberArray);
-            var sum = intNumberArray.Sum();
+            var filteredNumberArray = FilterNumbersLargerThanMax(intNumberArray);
+            ValidatePositiveNumbers(filteredNumberArray);
+            
+            var sum = filteredNumberArray.Sum();
 
             return sum;
         }
@@ -40,6 +43,13 @@ namespace StringCalculator
                 var errorMessage = $"negatives not allowed: {string.Join(' ', negativeNumbers)}";
                 throw new Exception(errorMessage);
             }
+        }
+
+        internal int[] FilterNumbersLargerThanMax(int[] numbers)
+        {
+            List<int> numbersLessThanMax = new();
+            foreach (int number in numbers) if (number <= MaximumNumber) numbersLessThanMax.Add(number);
+            return numbersLessThanMax.ToArray();
         }
     }
 }

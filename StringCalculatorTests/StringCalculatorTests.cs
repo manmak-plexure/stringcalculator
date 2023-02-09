@@ -38,5 +38,18 @@ namespace StringCalculatorTests
             Assert.Equal(expected, exception.Message);
         }
 
+        [Theory]
+        [InlineData("1001,2", 2)]
+        public void IgnoreNumbersLargerThanMax(string input, int expected)
+        {
+            // Arrange
+            var calculator = new Calculator();
+
+            // Act
+            var actual = calculator.Add(input);
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
     }
 }
