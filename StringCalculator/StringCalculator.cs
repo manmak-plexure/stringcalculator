@@ -33,10 +33,7 @@ namespace StringCalculator
         internal void ValidatePositiveNumbers(int[] numbers)
         {
             List<int> negativeNumbers = new();
-            foreach (var number in numbers)
-            {
-                if (number < 0) negativeNumbers.Add(number);
-            }
+            foreach (var number in numbers) if (number < 0) negativeNumbers.Add(number);
 
             if (negativeNumbers.Count > 0)
             {
